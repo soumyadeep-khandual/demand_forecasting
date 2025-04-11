@@ -1,9 +1,10 @@
 # DEMAND FORECASTING EDA
 
 ## Data Preparation and Cleaning for Time Series
+- [Effect of outliers demo](outlier_effect.ipynb)
 
 ### Handling Missing Values
-Handling missing values is a critical step in the preprocessing of time series data, as incomplete data can lead to biased estimates, reduce the statistical power of analyses, and ultimately result in less reliable conclusions. The nature of time series data often adds complexity to handling missingness because the temporal ordering and potential autocorrelation between observations need to be considered. 
+Handling missing values is a critical step in the preprocessing of time series data, as incomplete data can lead to biased estimates, reduce the statistical power of analyses, and ultimately result in less reliable conclusions. The nature of time series data often adds complexity to handling missingness because the temporal ordering and potential autocorrelation between observations need to be considered.
 
 #### IMPUTATION BASED
 replacing missing data with substituted values
@@ -87,9 +88,7 @@ Visualizing Time Series Data provides intuitive insights into the underlying pat
 - **Seasonal Decomposition Plots**
 Seasonal decomposition plots break down the time series into its trend, seasonal, and residual components, typically resulting from time series decomposition methods like STL.
     + visually assess the strength and nature of the trend and seasonal patterns, as well as the randomness of the residual.
-- **Autocorrelation Function (ACF)
-and Partial Autocorrelation
-Function (PACF) Plots**
+- **Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) Plots**
     + The ACF plot displays the correlation of the series with its lags, 
     + PACF plot shows the partial correlation of the series with its lags, controlling for the values of the intermediate lags.
     + These plots are instrumental in identifying the order of autoregressive (AR) and moving average (MA) components for ARIMA modeling.
@@ -132,6 +131,35 @@ Anomalies, or outliers, are data points that deviate significantly from the patt
 - **Contextual Anomalies:** are data points that are anomalous in a specific context. For example, a low temperature might be normal in winter but would be considered anomalous in summer.
 
 - **Collective Anomalies:** involve a collection of data points that deviate from the overall pattern when considered together, even though the individual data points may not be anomalous by themselves. This can often be seen in time series with sudden shifts in variance or mean. 
+
+## Evaluating Forecasting Models
+- **Mean Absolute Error (MAE)**
+measures the average magnitude of the errors in a set of predictions, without considering their direction. It is calculated as the average of the absolute differences between the forecasted values and the actual values. MAE is easy to understand and interpret,
+$$\frac{1}{N}\sum_{i=1}^{N}|x_i-y_i|$$
+
+- **Mean Squared Error (MSE)**
+calculates the average of the squares of the errors. This means larger errors are penalized more than smaller errors, making MSE sensitive to outliers. MSE is useful when large errors are particularly undesirable.
+$$\frac{1}{N}\sum_{i=1}^{D}(x_i-y_i)^2$$
+
+- **Root Mean Squared Error (RMSE)**
+square root of the mean squared error. 
+    - It measures the standard deviation of the prediction errors
+    - scale-dependent accuracy measure in the same units as the predicted variable. 
+    - `+` RMSE gives a relatively high weight to large error
+    - `-` Not Robust to Outliers: The squaring of errors makes RMSE particularly sensitive to outliers.
+$$\text{RMSE} = \sqrt{\frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{n}}$$
+
+- **Mean Absolute Percentage Error (MAPE)**
+    - `+` scale-independent -> easier to interpret
+    - `-` undefined if any of the actual values are zero
+    Even values close to zero can lead to extremely large MAPE values, making the metric unstable in such cases.
+    - `-` Asymmetry: MAPE is not symmetric. It penalizes under-forecasting less severely than over-forecasting.
+    - `-` Sensitivity to Scale: MAPE can be more sensitive to errors when actual values are small. A small absolute error can result in a large percentage error if the actual value is tiny.
+
+    $$\text{MAPE} = \frac{1}{n} \sum_{i=1}^{n} \left| \frac{A_i - F_i}{A_i} \right| \times 100\%$$
+
+
 ## REFERENCES
-- https://cran.r-project.org/web/packages/imputeTS/readme/README.html
+- https://cran.r-project.org/web/packages/imputeTS/readme/README.html *[r-module]*
 - Time Series Data Analysis Unlocking Patterns and Predictions in Sequential Data By Brian Paul.
+- https://github.com/Nixtla/neuralforecast *[python-module]*
