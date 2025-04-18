@@ -6,6 +6,14 @@ Probabilistic forecasting is a type of forecasting that provides a probability d
 - **Outputs a Distributions:** The result of a probabilistic forecast is a probability distribution. This distribution can take various forms (e.g., normal, beta, empirical) and assigns a likelihood to each potential future value.
 - **richer Information:** Unlike deterministic (point) forecasts, probabilistic forecasts offer a much richer understanding of the potential future. This allows for better risk assessment, scenario planning, and decision-making.
 
+- **Common Methodologies:**
+    - Ensemble Methods: Running multiple simulations or models with slightly different initial conditions or parameters and analyzing the distribution of their outputs.
+    - Bootstrapping: Resampling historical data to create multiple simulated future scenarios and building a distribution of forecasts.
+    - Bayesian Methods: Using probability to represent uncertainty about model parameters and updating these probabilities as new data becomes available, leading to a predictive distribution.
+    - Quantile Regression: Directly estimating different quantiles of the future distribution.
+    - Distributional Regression: Modeling the parameters of a probability distribution as a function of input variables.
+
+
 # Time Series Foundation Models
 Time series foundation models are a relatively new and rapidly evolving area in time series analysis. Drawing inspiration from the success of foundation models in Natural Language Processing (like large language models) and Computer Vision, the goal is to create large, pre-trained models on vast amounts of diverse time series data that can then be adapted or fine-tuned for various downstream forecasting and analysis tasks with minimal task-specific training.
 
